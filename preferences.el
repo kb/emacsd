@@ -3,6 +3,9 @@
 ;; Set ibuffer as the default
 (defalias 'list-buffers 'ibuffer)
 
+;; Dude, where's my git?
+(setq magit-git-executable "/usr/local/git/bin/git")
+
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
 
