@@ -14,5 +14,5 @@
 (require 'magit)
 
 ; --- DISABLE BACKUPS
-(setq backup-inhibited t)
-(setq auto-save-default nil)
+(setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
+(setq auto-save-file-name-transforms `(("\\(?:[^/]*/\\)*\\(.*\\)" ,"~/.emacs_temp/autosaves" t)))
