@@ -15,4 +15,7 @@
 ;; Delete works as it should
 (normal-erase-is-backspace-mode 1)
 
+;; Highlight the current line
+(global-hl-line-mode 1)
+
 (provide 'preferences)
