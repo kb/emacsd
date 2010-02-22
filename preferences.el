@@ -1,5 +1,10 @@
 ;; --- PREFERENCES (I LIKES WHAT I DOS AND I DOS WHAT I LIKES)
 
+;; Set some shell preferences
+(when (equal system-type 'darwin)
+  (setenv "PATH" (concat "/usr/local/git/bin:" (getenv "PATH")))
+  (push "/opt/local/bin" exec-path))
+
 ;; Set ibuffer as the default
 (defalias 'list-buffers 'ibuffer)
 
