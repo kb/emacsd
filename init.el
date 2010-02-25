@@ -7,11 +7,7 @@
 (require 'preferences)
 (require 'cl)
 (require 'saveplace)
-;(require 'ffap)
 (require 'uniquify)
-;(require 'ansi-color)
-;(require 'recentf)
-(require 'magit)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
