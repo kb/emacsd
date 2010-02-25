@@ -24,4 +24,7 @@
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
+;; magic + git = magit
+(global-set-key (kbd "C-c m s") 'magit-status)
+
 (provide 'bindings)
