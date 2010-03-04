@@ -14,7 +14,7 @@
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
 
-;; Override default tabbing in css mode
+;; Override default tabbing for certain mode
 (add-hook 'css-mode-hook  (setq css-indent-offset 2))
 
 ;; How many spaces should my tab be?
@@ -40,5 +40,8 @@
         ido-create-new-buffer 'always
         ido-use-filename-at-point 'guess
         ido-max-prospects 10))
+
+;; Sets the Option key Meta
+(setq mac-option-modifier 'meta)
 
 (provide 'preferences)
