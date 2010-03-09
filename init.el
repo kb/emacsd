@@ -1,7 +1,11 @@
-;; --- LOADED
+;; Loaded
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
+
+;; Lock n Load packages not found in elpa
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
+
 (require 'look-n-feel)
 (require 'bindings)
 (require 'preferences)
@@ -22,3 +26,7 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
+;; Fire up  cucumber mode
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("/.features&" . feature-mode))
