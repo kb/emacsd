@@ -5,6 +5,7 @@
 
 ;; Lock n Load packages not found in elpa
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/nav"))
 
 ;; Load up elpa
 (when
@@ -19,6 +20,7 @@
 (require 'saveplace)
 (require 'uniquify)
 (require 'feature-mode)
+(require 'nav)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
@@ -26,4 +28,5 @@
 
 ;; Fire up  cucumber mode
 (add-to-list 'auto-mode-alist '("/.features&" . feature-mode))
+
 (put 'dired-find-alternate-file 'disabled nil)

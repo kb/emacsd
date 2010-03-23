@@ -44,4 +44,7 @@
 ;; Sets the Option key Meta
 (setq mac-option-modifier 'meta)
 
+;; Show dot-files in nav
+(setq nav-hidden t)
+
 (provide 'preferences)
