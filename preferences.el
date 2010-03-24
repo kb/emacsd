@@ -47,4 +47,10 @@
 ;; Show dot-files in nav
 (setq nav-hidden t)
 
+;; Set quick jump directories for nav
+(setq nav-quickdir-list (list "~/www" "~/repos" "~/Dropbox"))
+
+;; Set quick jump files for nav
+(setq nav-quickfile-list (list "~/.bashrc" "~/.gitconfig" "~/.emacs.d/preferences.el"))
+
 (provide 'preferences)
