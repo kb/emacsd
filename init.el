@@ -6,6 +6,7 @@
 ;; Lock n Load packages not found in elpa
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/nav"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/magit"))
 
 ;; Load up elpa
 (when
@@ -21,6 +22,7 @@
 (require 'uniquify)
 (require 'feature-mode)
 (require 'nav)
+(require 'magit)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))

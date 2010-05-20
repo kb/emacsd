@@ -6,12 +6,12 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Transparency
-(set-frame-parameter nil 'alpha '(85 75))
+;;(set-frame-parameter nil 'alpha '(85 75))
 
 ;; Default startup sizing
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(width . 200))
-(add-to-list 'default-frame-alist '(alpha 85 50))
+(add-to-list 'default-frame-alist '(height . 45))
+(add-to-list 'default-frame-alist '(width . 150))
+;;(add-to-list 'default-frame-alist '(alpha 85 50))
 
 ;; Kill the splash screen
 (setq inhibit-startup-screen t)
