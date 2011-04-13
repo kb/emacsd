@@ -53,4 +53,7 @@
 ;; Set quick jump files for nav
 (setq nav-quickfile-list (list "~/.bash_profile" "~/.gitconfig" "~/.emacs.d/preferences.el"))
 
+;; M-x eb is the shortcut
+(defalias 'eb 'erase-buffer)
+
 (provide 'preferences)

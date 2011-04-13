@@ -20,15 +20,9 @@
 (require 'cl)
 (require 'saveplace)
 (require 'uniquify)
-(require 'feature-mode)
-(require 'nav)
-(require 'magit)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
 (setq auto-save-file-name-transforms `(("\\(?:[^/]*/\\)*\\(.*\\)" ,"~/.emacs_temp/autosaves" t)))
-
-;; Fire up  cucumber mode
-;; (add-to-list 'auto-mode-alist '("/.features&" . feature-mode))
 
 (put 'dired-find-alternate-file 'disabled nil)
