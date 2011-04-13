@@ -51,6 +51,6 @@
 (setq nav-quickdir-list (list "~/www" "~/repos" "~/Dropbox"))
 
 ;; Set quick jump files for nav
-(setq nav-quickfile-list (list "~/.bashrc" "~/.gitconfig" "~/.emacs.d/preferences.el"))
+(setq nav-quickfile-list (list "~/.bash_profile" "~/.gitconfig" "~/.emacs.d/preferences.el"))
 
 (provide 'preferences)
