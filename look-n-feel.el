@@ -17,9 +17,9 @@
 (setq inhibit-startup-screen t)
 
 ;; Load up color theme of choice
-(add-to-list 'load-path  (concat dotfiles-dir  "themes"))
-(mapc #'load (directory-files (concat dotfiles-dir "themes") t "\\.el$"))
-(color-theme-ir-black)
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-twilight)
 
 ;; Destroy unicode garbage in shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
