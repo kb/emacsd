@@ -24,7 +24,7 @@
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
-;; magic + git = magit
-(global-set-key (kbd "C-c m s") 'magit-status)
+;; Duplicate line keystroke
+(global-set-key (kbd "C-c C-d") 'duplicate-line)
 
 (provide 'bindings)

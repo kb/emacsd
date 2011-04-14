@@ -56,4 +56,19 @@
 ;; M-x eb is the shortcut
 (defalias 'eb 'erase-buffer)
 
+;; pretty colors for shell
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;; nuke trailing whitespaces when writing to a file
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
+
+(defun duplicate-line()
+  "Duplicates current line"
+  (interactive)
+  (kill-whole-line)
+  (yank)(yank))
+
+;; Turn on line numbers for every buffer
+(global-linum-mode t)
+
 (provide 'preferences)
