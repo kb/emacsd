@@ -1,0 +1,3 @@
+[submodule "non_elpa/rhtml"]
+	path = non_elpa/rhtml
+	url = https://github.com/crazycode/rhtml.git

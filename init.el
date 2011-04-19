@@ -7,6 +7,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/nav"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/magit"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/rhtml"))
 
 ;; Load up elpa
 (when
@@ -20,6 +21,7 @@
 (require 'cl)
 (require 'saveplace)
 (require 'uniquify)
+(require 'rhtml-mode)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
