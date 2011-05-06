@@ -74,4 +74,7 @@
 ;; Turn on line numbers for every buffer
 (global-linum-mode t)
 
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 (provide 'preferences)
