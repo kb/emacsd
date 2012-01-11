@@ -12,7 +12,7 @@
 (setq magit-git-executable "/usr/local/git/bin/git")
 
 ;; Makes soft-tabs (spaces sans tabs)
-(setq-default indent-tabs-mode nil)
+; (setq-default indent-tabs-mode nil)
 
 ;; Override default tabbing for certain mode
 (add-hook 'css-mode-hook  (setq css-indent-offset 2))
@@ -24,10 +24,10 @@
 (setq default-tab-width 2)
 
 ;; Delete works as it should
-(normal-erase-is-backspace-mode 1)
+(normal-erase-is-backspace-mode 0)
 
-;; Highlight the current line
-(global-hl-line-mode 1)
+;; Turn off current line highlight
+(global-hl-line-mode 0)
 
 ;; y and n. Two who keystrokes letters saved!
 (defalias 'yes-or-no-p 'y-or-n-p)
