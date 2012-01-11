@@ -11,7 +11,6 @@
 ;; Default startup sizing
 (add-to-list 'default-frame-alist '(height . 45))
 (add-to-list 'default-frame-alist '(width . 150))
-;;(add-to-list 'default-frame-alist '(alpha 85 50))
 
 ;; Kill the splash screen
 (setq inhibit-startup-screen t)
@@ -19,7 +18,7 @@
 ;; Load up color theme of choice
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-twilight)
+(color-theme-charcoal-black)
 
 ;; Destroy unicode garbage in shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
