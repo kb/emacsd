@@ -14,7 +14,7 @@
 
 ;; Use regex searches by default.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "\C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
@@ -26,5 +26,8 @@
 
 ;; Duplicate line keystroke
 (global-set-key (kbd "C-c C-d") 'duplicate-line)
+
+;; Comment or uncomment region keystroke
+(global-set-key (kbd "C-c / ") 'comment-or-uncomment-region)
 
 (provide 'bindings)
