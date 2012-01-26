@@ -9,6 +9,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/magit"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/rhtml"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/el-get/el-get"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/less-css-mode"))
 
 (require 'package)
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
@@ -25,6 +26,7 @@
 (require 'feature-mode)
 (require 'rhtml-mode)
 (require 'el-get)
+(require 'less-css-mode)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))

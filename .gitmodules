@@ -1,3 +1,6 @@
 [submodule "non_elpa/rhtml"]
 	path = non_elpa/rhtml
 	url = https://github.com/crazycode/rhtml.git
+[submodule "non_elpa/less-css-mode"]
+	path = non_elpa/less-css-mode
+	url = git://github.com/purcell/less-css-mode.git
