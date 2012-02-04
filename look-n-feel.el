@@ -33,6 +33,7 @@
   ;; If there is more than one, they won't work right.
  '(magit-branch ((t (:inherit magit-header :background "wheat4" :foreground "DarkBlue" :box (:line-width 2 :color "wheat3" :style released-button) :weight bold :height 100))))
  '(magit-diff-add ((nil (:foreground "green"))))
+ '(magit-diff-del ((nil (:foreground "red"))))
  '(magit-diff-file-header ((t (:inherit magit-header :foreground "white"))))
  '(magit-diff-hunk-header ((t (:inherit magit-header :background "Grey13" :foreground "khaki1" :slant italic))))
  '(magit-header ((t (:foreground "white" :height 1))))
