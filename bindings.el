@@ -33,4 +33,6 @@
 ;; Comment or uncomment region keystroke
 (global-set-key (kbd "C-c m") 'magit-status)
 
+(textmate-mode)
+
 (provide 'bindings)

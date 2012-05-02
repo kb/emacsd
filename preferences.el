@@ -12,7 +12,7 @@
 (setq magit-git-executable "/usr/local/git/bin/git")
 
 ;; Makes soft-tabs (spaces sans tabs)
-; (setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 ;; Override default tabbing for certain mode
 (add-hook 'css-mode-hook  (setq css-indent-offset 2))

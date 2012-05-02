@@ -7,3 +7,6 @@
 [submodule "non_elpa/magit"]
 	path = non_elpa/magit
 	url = https://github.com/magit/magit.git
+[submodule "non_elpa/textmate"]
+	path = non_elpa/textmate
+	url = git://github.com/defunkt/textmate.el.git

@@ -5,8 +5,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Transparency
-;;(set-frame-parameter nil 'alpha '(85 75))
+;; Transparency (set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+(set-frame-parameter (selected-frame) 'alpha '(95 75))
+(add-to-list 'default-frame-alist '(alpha 95 75))
 
 ;; Default startup sizing
 (add-to-list 'default-frame-alist '(height . 45))
