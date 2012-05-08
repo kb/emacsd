@@ -35,3 +35,6 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'erase-buffer 'disabled nil)
+
+;; For some reason this will bomb unless loaded last
+(textmate-mode)
