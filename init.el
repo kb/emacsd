@@ -11,14 +11,15 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/less-css-mode"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/whitespace"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/textmate"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pbcopy"))
 
 (require 'package)
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
 (package-initialize)
 
-(require 'look-n-feel)
-(require 'bindings)
-(require 'preferences)
+;; Require 3rd party before custom tweaks
+(require 'textmate)
+(require 'pbcopy)
 (require 'cl)
 (require 'saveplace)
 (require 'uniquify)
@@ -27,7 +28,11 @@
 (require 'less-css-mode)
 (require 'whitespace)
 (require 'magit)
-(require 'textmate)
+
+;; Custom
+(require 'look-n-feel)
+(require 'bindings)
+(require 'preferences)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
@@ -35,6 +40,3 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'erase-buffer 'disabled nil)
-
-;; For some reason this will bomb unless loaded last
-(textmate-mode)

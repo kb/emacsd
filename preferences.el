@@ -72,9 +72,15 @@
   (yank)(yank))
 
 ;; Turn on line numbers for every buffer
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
+;; Yuuuuuuppp! Cmd-t / Meta-t
+(textmate-mode)
+
+;; Make copy fucking paste work when running in terminal
+(turn-on-pbcopy)
 
 (provide 'preferences)
