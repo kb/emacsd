@@ -83,4 +83,7 @@
 ;; Make copy fucking paste work when running in terminal
 (turn-on-pbcopy)
 
+;; Column numbers should always be displayed
+(column-number-mode)
+
 (provide 'preferences)
