@@ -12,6 +12,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/whitespace"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/textmate"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pbcopy"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pianobar"))
 
 (require 'package)
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
@@ -28,6 +29,7 @@
 (require 'less-css-mode)
 (require 'whitespace)
 (require 'magit)
+(require 'pianobar)
 
 ;; Custom
 (require 'look-n-feel)
