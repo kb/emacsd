@@ -86,4 +86,9 @@
 ;; Column numbers should always be displayed
 (column-number-mode)
 
+;; Sorta evil, but the mouse should work in terminal
+(xterm-mouse-mode t)
+(defun track-mouse (e))
+(setq mouse-sel-mode t)
+
 (provide 'preferences)
