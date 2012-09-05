@@ -7,7 +7,6 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/nav"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/magit"))
-(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/rhtml"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/less-css-mode"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/whitespace"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/textmate"))
@@ -25,11 +24,12 @@
 (require 'saveplace)
 (require 'uniquify)
 (require 'feature-mode)
-(require 'rhtml-mode)
 (require 'less-css-mode)
 (require 'whitespace)
 (require 'magit)
+(require 'rebase-mode)
 (require 'pianobar)
+(require 'mouse)
 
 ;; Custom
 (require 'look-n-feel)
