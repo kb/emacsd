@@ -1,15 +1,15 @@
 ;; --- PREFERENCES (I LIKES WHAT I DOS AND I DOS WHAT I LIKES)
 
 ;; Set some shell preferences
-(when (equal system-type 'darwin)
-  (setenv "PATH" (concat "/usr/local/git/bin:" (getenv "PATH")))
-  (push "/opt/local/bin" exec-path))
+;; (when (equal system-type 'darwin)
+;;   (setenv "PATH" (concat "/usr/local/git/bin:" (getenv "PATH")))
+;;   (push "/opt/local/bin" exec-path))
 
 ;; Set ibuffer as the default
 (defalias 'list-buffers 'ibuffer)
 
 ;; Dude, where's my git?
-(setq magit-git-executable "/usr/local/git/bin/git")
+(setq magit-git-executable "/usr/local/bin/git")
 
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
