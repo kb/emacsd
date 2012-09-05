@@ -14,7 +14,13 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pianobar"))
 
 (require 'package)
-(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+;; Add the original Emacs Lisp Package Archive
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 (package-initialize)
 
 ;; Require 3rd party before custom tweaks
