@@ -30,7 +30,7 @@
 ;; Comment or uncomment region keystroke
 (global-set-key (kbd "C-c / ") 'comment-or-uncomment-region)
 
-;; Comment or uncomment region keystroke
+;; Magit status
 (global-set-key (kbd "C-c m") 'magit-status)
 
 (provide 'bindings)
