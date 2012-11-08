@@ -74,6 +74,10 @@
 ;; Turn on line numbers for every buffer
 ;; (global-linum-mode t)
 
+;; Fix for shift up = <select> is undefined for windmove
+(define-key input-decode-map "\e[1;2A" [S-up])
+
+;; Load windmove default bindings
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
