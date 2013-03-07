@@ -95,4 +95,8 @@
 (defun track-mouse (e))
 (setq mouse-sel-mode t)
 
+;; Open new buffer using vertical splitting
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+
 (provide 'preferences)
