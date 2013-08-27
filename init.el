@@ -6,7 +6,6 @@
 ;; Lock n Load packages not found in elpa
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/nav"))
-(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/magit"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/less-css-mode"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/whitespace"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/textmate"))
@@ -20,6 +19,8 @@
 ;; Add the user-contributed repository
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (package-initialize)
 
@@ -32,8 +33,6 @@
 (require 'feature-mode)
 (require 'less-css-mode)
 (require 'whitespace)
-(require 'magit)
-(require 'rebase-mode)
 (require 'pianobar)
 (require 'mouse)
 
