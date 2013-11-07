@@ -11,6 +11,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/textmate"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pbcopy"))
 (add-to-list 'load-path (concat dotfiles-dir "/non_elpa/pianobar"))
+(add-to-list 'load-path (concat dotfiles-dir "/non_elpa/go-mode"))
 
 (require 'package)
 ;; Add the original Emacs Lisp Package Archive
@@ -35,6 +36,7 @@
 (require 'whitespace)
 (require 'pianobar)
 (require 'mouse)
+(require 'go-mode)
 
 ;; Custom
 (require 'look-n-feel)
