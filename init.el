@@ -36,7 +36,7 @@
 (require 'whitespace)
 (require 'pianobar)
 (require 'mouse)
-(require 'go-mode)
+(require 'go-mode-load)
 
 ;; Custom
 (require 'look-n-feel)
