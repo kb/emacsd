@@ -11,6 +11,9 @@
 ;; Dude, where's my git?
 (setq magit-git-executable "/usr/local/bin/git")
 
+;; Enable git gutter+
+(global-git-gutter+-mode t)
+
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
 
