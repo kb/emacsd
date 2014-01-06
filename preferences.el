@@ -14,6 +14,9 @@
 ;; Enable git gutter+
 (global-git-gutter+-mode t)
 
+;; Enable rainbow delimiters
+(global-rainbow-delimiters-mode t)
+
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
 
