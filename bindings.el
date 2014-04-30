@@ -33,4 +33,7 @@
 ;; Magit status
 (global-set-key (kbd "C-c m") 'magit-status)
 
+;; Access rgrep w/o having to M-x rgrep all the time
+(global-set-key (kbd "C-c g") 'rgrep)
+
 (provide 'bindings)
