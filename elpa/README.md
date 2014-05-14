@@ -11,3 +11,4 @@ Maintaining ELPA packages via source control usually ends up in a world of hurt.
 * markdown-mode
 * git-gutter+
 * rainbow-delimiters
+* pianobar
