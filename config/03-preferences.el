@@ -1,14 +1,9 @@
 ;; --- PREFERENCES (I LIKES WHAT I DOS AND I DOS WHAT I LIKES)
 
-;; Set some shell preferences
-;; (when (equal system-type 'darwin)
-;;   (setenv "PATH" (concat "/usr/local/git/bin:" (getenv "PATH")))
-;;   (push "/opt/local/bin" exec-path))
-
 ;; Set ibuffer as the default
 (defalias 'list-buffers 'ibuffer)
 
-;; Dude, where's my git?
+;; Where's git?
 (setq magit-git-executable "/usr/local/bin/git")
 
 ;; Enable git gutter+
@@ -56,12 +51,6 @@
 ;; Show dot-files in nav
 (setq nav-hidden t)
 
-;; Set quick jump directories for nav
-(setq nav-quickdir-list (list "~/www" "~/repos" "~/Dropbox"))
-
-;; Set quick jump files for nav
-(setq nav-quickfile-list (list "~/.bash_profile" "~/.gitconfig" "~/.emacs.d/preferences.el"))
-
 ;; M-x eb is the shortcut
 (defalias 'eb 'erase-buffer)
 
@@ -87,7 +76,7 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; Yuuuuuuppp! Cmd-t / Meta-t
+;; Cmd-t / Meta-t
 (textmate-mode)
 
 ;; Make copy fucking paste work when running in terminal

@@ -16,11 +16,6 @@
 ;; Kill the splash screen
 (setq inhibit-startup-screen t)
 
-;; Load up color theme of choice
-;;(require 'color-theme)
-;;(color-theme-initialize)
-;;(color-theme-charcoal-black)
-
 ;; Destroy unicode garbage in shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
