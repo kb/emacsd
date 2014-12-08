@@ -72,9 +72,12 @@
 ;; Fix for shift up = <select> is undefined for windmove
 (define-key input-decode-map "\e[1;2A" [S-up])
 
-;; Load windmove default bindings
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+;; Set windmove bindings because some terminals do not support
+;; modified arrow keys (aka the windmove defaults keybindings)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
 
 ;; Cmd-t / Meta-t
 (textmate-mode)
