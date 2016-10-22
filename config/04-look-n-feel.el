@@ -1,13 +1,16 @@
 ;; --- LOOK n FEEL
 
+;; Set theme on load
+(load-theme 'zenburn t)
+
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Transparency (set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(95 75))
-(add-to-list 'default-frame-alist '(alpha 95 75))
+(set-frame-parameter (selected-frame) 'alpha '(100 95))
+(add-to-list 'default-frame-alist '(alpha 100 95))
 
 ;; Default startup sizing
 (add-to-list 'default-frame-alist '(height . 45))
@@ -16,11 +19,8 @@
 ;; Kill the splash screen
 (setq inhibit-startup-screen t)
 
-;; Destroy unicode garbage in shell
+;; Remove unicode encoding in shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-;; Highlight matching parentheses when the point is on them.
-(show-paren-mode 1)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.

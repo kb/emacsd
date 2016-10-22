@@ -6,9 +6,6 @@
 ;; Where's git?
 (setq magit-git-executable "/usr/local/bin/git")
 
-;; Enable git gutter+
-(global-git-gutter+-mode t)
-
 ;; Enable rainbow delimiters
 (global-rainbow-delimiters-mode t)
 
@@ -17,6 +14,16 @@
 
 ;; Override default tabbing for certain mode
 (add-hook 'css-mode-hook  (setq css-indent-offset 2))
+
+(add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
+(add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
+(add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
+
+;; Set mode for file on load
+;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+
+(setq web-mode-content-types-alist
+  '(("jsx" . "\\.js[x]?\\'")))
 
 ;; 2 spaces instead of 4 for javascript
 (setq js-indent-level 2)
@@ -77,7 +84,7 @@
 ;; shift cursor down: \033[1;2B
 (windmove-default-keybindings)
 
-;; Cmd-t / Meta-t
+;; Textmate Cmd-t -> M-t
 (textmate-mode)
 
 ;; Make copy fucking paste work when running in terminal
@@ -86,11 +93,19 @@
 ;; Column numbers should always be displayed
 (column-number-mode)
 
-;; Sorta evil, but the mouse should work in terminal
-(xterm-mouse-mode t)
-(defun track-mouse (e))
-(setq mouse-sel-mode t)
-
+;; Enable mouse support
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] (lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda ()
+                              (interactive)
+                              (scroll-up 1)))
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t)
+)
 ;; Open new buffer using vertical splitting
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)

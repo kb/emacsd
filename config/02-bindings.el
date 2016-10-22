@@ -33,20 +33,10 @@
 ;; Magit status
 (global-set-key (kbd "C-c m") 'magit-status)
 
-;; Access rgrep w/o having to M-x rgrep all the time
+;; Access rgrep w/o having to M-x rgrep
 (global-set-key (kbd "C-c g") 'rgrep)
 
-;; Pianobar
-;; Play || Pause
-(global-set-key (kbd "C-c p") 'pianobar-play-or-pause)
-
-;; Next song
-(global-set-key (kbd "C-c n") 'pianobar-next-song)
-
-;; (╯°□°)╯︵ ┻━┻  song
-(global-set-key (kbd "C-c -") 'pianobar-ban-current-song)
-
-;; ┬─┬ノ( º _ ºノ) song
-(global-set-key (kbd "C-c +") 'pianobar-love-current-song)
+;; Silversearcher
+(global-set-key (kbd "C-c s") 'ag)
 
 (provide 'bindings)
