@@ -7,7 +7,8 @@
 (setq magit-git-executable "/usr/local/bin/git")
 
 ;; Enable rainbow delimiters
-(global-rainbow-delimiters-mode t)
+(add-hook 'web-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'ruby-mode-hook #'rainbow-delimiters-mode)
 
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)

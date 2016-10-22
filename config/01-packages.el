@@ -28,9 +28,7 @@
 (require 'cl)
 (require 'saveplace)
 (require 'uniquify)
-(require 'feature-mode)
 (require 'whitespace)
-(require 'go-mode-load)
 
 ; --- DISABLE BACKUPS
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
