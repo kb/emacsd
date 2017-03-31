@@ -1,0 +1,7 @@
+.DS_Store
+elpa/*/**
+elpa/*.txt
+elpa/archive-contents
+elpa/builtin-packages
+auto-save-list/*
+places
