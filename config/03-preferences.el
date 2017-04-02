@@ -4,7 +4,7 @@
 (defalias 'list-buffers 'ibuffer)
 
 ;; Where's git?
-(setq magit-git-executable "/usr/local/bin/git")
+(setq magit-git-executable "/usr/bin/git")
 
 ;; Enable rainbow delimiters
 (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
