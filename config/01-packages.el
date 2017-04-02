@@ -22,6 +22,9 @@
 
 (package-initialize)
 
+;; Use the 'google' package by default.
+(require 'google)
+
 ;; Require 3rd party before custom tweaks
 (require 'textmate)
 (require 'pbcopy)
