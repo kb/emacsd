@@ -25,7 +25,7 @@
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
 ;; Duplicate line keystroke
-(global-set-key (kbd "C-c C-d") 'duplicate-line)
+(global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; Comment or uncomment region keystroke
 (global-set-key (kbd "C-c / ") 'comment-or-uncomment-region)
