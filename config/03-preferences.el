@@ -53,9 +53,6 @@
         ido-use-filename-at-point 'guess
         ido-max-prospects 10))
 
-;; Sets the Option key Meta
-(setq mac-option-modifier 'meta)
-
 ;; Show dot-files in nav
 (setq nav-hidden t)
 
@@ -88,8 +85,8 @@
 ;; Textmate Cmd-t -> M-t
 (textmate-mode)
 
-;; Make copy fucking paste work when running in terminal
-(turn-on-pbcopy)
+;; copy/paste to clipboard on linux
+(setq x-select-enable-clipboard t)
 
 ;; Column numbers should always be displayed
 (column-number-mode)
