@@ -16,7 +16,7 @@
 ;; Override default tabbing for certain mode
 (add-hook 'css-mode-hook  (setq css-indent-offset 2))
 
-(add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
+(add-hook 'web-mode-hook (setq web-mode-code-indent-offset 4))
 (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
 
@@ -27,7 +27,7 @@
   '(("jsx" . "\\.js[x]?\\'")))
 
 ;; 2 spaces instead of 4 for javascript
-(setq js-indent-level 2)
+;; (setq js-indent-level 2)
 
 ;; How many spaces should my tab be?
 (setq default-tab-width 2)
