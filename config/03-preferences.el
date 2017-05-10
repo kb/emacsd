@@ -108,4 +108,15 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
+;; Term
+(defun term-toggle-mode ()
+  (interactive)
+  (if (term-in-line-mode)
+      (term-char-mode)
+    (term-line-mode)))
+
+(define-key term-mode-map "\C-x\C-t" 'term-toggle-mode)
+(advice-add 'ansi-term :after #'term-toggle-mode)
+(advice-add 'term :after #'term-toggle-mode)
+
 (provide 'preferences)
