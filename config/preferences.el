@@ -72,7 +72,7 @@
   (yank)(yank))
 
 ;; Turn on line numbers for every buffer
-;; (global-linum-mode t)
+(global-linum-mode t)
 
 ;; Fix for shift up = <select> is undefined for windmove
 (define-key input-decode-map "\e[1;2A" [S-up])
@@ -81,9 +81,6 @@
 ;; shift cursor up: \033[1;2A
 ;; shift cursor down: \033[1;2B
 (windmove-default-keybindings)
-
-;; Textmate Cmd-t -> M-t
-(textmate-mode)
 
 ;; copy/paste to clipboard on linux
 (setq x-select-enable-clipboard t)
@@ -109,14 +106,14 @@
 (setq split-width-threshold 0)
 
 ;; Term
-(defun term-toggle-mode ()
-  (interactive)
-  (if (term-in-line-mode)
-      (term-char-mode)
-    (term-line-mode)))
+;; (defun term-toggle-mode ()
+;;   (interactive)
+;;   (if (term-in-line-mode)
+;;       (term-char-mode)
+;;     (term-line-mode)))
 
-(define-key term-mode-map "\C-x\C-t" 'term-toggle-mode)
-(advice-add 'ansi-term :after #'term-toggle-mode)
-(advice-add 'term :after #'term-toggle-mode)
+;; (define-key term-mode-map "\C-x\C-t" 'term-toggle-mode)
+;; (advice-add 'ansi-term :after #'term-toggle-mode)
+;; (advice-add 'term :after #'term-toggle-mode)
 
 (provide 'preferences)
