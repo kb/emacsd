@@ -1,35 +1,68 @@
-;; Loaded
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-(add-to-list 'load-path dotfiles-dir)
-
-;; Lock n Load packages not found in elpa
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa"))
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa/nav"))
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa/whitespace"))
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa/textmate"))
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa/pbcopy"))
-(add-to-list 'load-path (concat dotfiles-dir "../non_elpa/go-mode"))
-
+;; Install use-package if necessary
 (require 'package)
-
-;; Add Emacs Lisp Package Archive repositories
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
-;; Require 3rd party before custom tweaks
-(require 'textmate)
-(require 'pbcopy)
-(require 'cl)
-(require 'saveplace)
-(require 'uniquify)
-(require 'whitespace)
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-; --- DISABLE BACKUPS
-(setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
-(setq auto-save-file-name-transforms `(("\\(?:[^/]*/\\)*\\(.*\\)" ,"~/.emacs_temp/autosaves" t)))
+;; Enable use-package
+(eval-when-compile
+  (require 'use-package))
+
+;; Packages
+(use-package magit
+  :ensure t
+  :bind ("C-c m" . magit-status))
+
+(use-package multiple-cursors
+  :ensure t)
+
+(use-package markdown-mode
+  :ensure t)
+
+(use-package git-gutter+
+  :ensure t)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :init
+
+  (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'ruby-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'emacs-lisp-mode #'rainbow-delimiters-mode))
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package zenburn-theme
+  :ensure t)
+
+(use-package swift-mode
+  :ensure t)
+
+(use-package web-mode
+  :ensure t
+  :init
+
+  (add-hook 'css-mode-hook  (setq css-indent-offset 2))
+  (add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
+  (add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
+  (add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2)))
+
+(use-package flycheck
+  :ensure t)
+
+(use-package flycheck-swift
+  :ensure t
+  :init
+
+  (add-hook 'flycheck-mode-hook #'flycheck-swift-setup))
+
+(use-package pbcopy
+  :ensure t)

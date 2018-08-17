@@ -1,27 +1,14 @@
-;; --- PREFERENCES (I LIKES WHAT I DOS AND I DOS WHAT I LIKES)
+;; --- PREFERENCES
 
 ;; Set ibuffer as the default
 (defalias 'list-buffers 'ibuffer)
 
-;; Where's git?
-(setq magit-git-executable "/usr/local/bin/git")
-
-;; Enable rainbow delimiters
-(add-hook 'web-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'ruby-mode-hook #'rainbow-delimiters-mode)
+; --- Disable Backups
+(setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
+(setq auto-save-file-name-transforms `(("\\(?:[^/]*/\\)*\\(.*\\)" ,"~/.emacs_temp/autosaves" t)))
 
 ;; Makes soft-tabs (spaces sans tabs)
 (setq-default indent-tabs-mode nil)
-
-;; Override default tabbing for certain mode
-(add-hook 'css-mode-hook  (setq css-indent-offset 2))
-
-(add-hook 'web-mode-hook (setq web-mode-code-indent-offset 2))
-(add-hook 'web-mode-hook (setq web-mode-markup-indent-offset 2))
-(add-hook 'web-mode-hook (setq web-mode-css-indent-offset 2))
-
-;; Set mode for file on load
-;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 (setq web-mode-content-types-alist
   '(("jsx" . "\\.js[x]?\\'")))
@@ -74,21 +61,7 @@
   (kill-whole-line)
   (yank)(yank))
 
-;; Turn on line numbers for every buffer
-;; (global-linum-mode t)
-
-;; Fix for shift up = <select> is undefined for windmove
-(define-key input-decode-map "\e[1;2A" [S-up])
-
-;; Set these key mappings in Terminal.app for windmove
-;; shift cursor up: \033[1;2A
-;; shift cursor down: \033[1;2B
-(windmove-default-keybindings)
-
-;; Textmate Cmd-t -> M-t
-(textmate-mode)
-
-;; Make copy fucking paste work when running in terminal
+;; Make copy/paste work when running in terminal
 (turn-on-pbcopy)
 
 ;; Column numbers should always be displayed
@@ -106,7 +79,8 @@
                               (scroll-up 1)))
   (defun track-mouse (e))
   (setq mouse-sel-mode t)
-)
+  )
+
 ;; Open new buffer using vertical splitting
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)

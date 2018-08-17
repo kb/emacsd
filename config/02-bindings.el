@@ -1,10 +1,15 @@
 ;; --- KEYBINDINGS
 
+;; Set these key mappings in Terminal.app for windmove
+;; shift cursor up: \033[1;2A
+;; shift cursor down: \033[1;2B
+(windmove-default-keybindings)
+
 ;; Resize windows
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-c <left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-c <down>") 'shrink-window)
+(global-set-key (kbd "C-c <up>") 'enlarge-window)
 
 ;; Indent to the proper place after a return
 (global-set-key (kbd "RET") 'newline-and-indent)
