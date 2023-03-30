@@ -42,9 +42,6 @@
 (use-package zenburn-theme
   :ensure t)
 
-(use-package swift-mode
-  :ensure t)
-
 (use-package web-mode
   :ensure t
   :init
@@ -56,12 +53,6 @@
 
 (use-package flycheck
   :ensure t)
-
-(use-package flycheck-swift
-  :ensure t
-  :init
-
-  (add-hook 'flycheck-mode-hook #'flycheck-swift-setup))
 
 (use-package pbcopy
   :ensure t)
