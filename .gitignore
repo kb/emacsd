@@ -1,7 +1,13 @@
 .DS_Store
-elpa/*/**
+elpa/**
 elpa/*.txt
 elpa/archive-contents
 elpa/builtin-packages
 auto-save-list/*
+transient/**
 places
+recentf
+projects
+projectile-bookmarks.eld
+.lsp-session-v1
+.dap-breakpoints

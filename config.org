@@ -1,0 +1,526 @@
+* Setup for Mac
+
+https://github.com/d12frosted/homebrew-emacs-plus/issues/398#issuecomment-1366510944
+https://blog.lambda.cx/posts/using-emacsclient-on-macos/
+
+* User Info
+
+#+begin_src emacs-lisp
+(setq user-full-name "Kyle Bolton")
+(setq user-mail-address "kyle.bolton@gmail.com")
+#+end_src
+
+* Environment Setup
+
+Disable Backups
+#+begin_src emacs-lisp
+(setq backup-directory-alist (quote ((".*" . "~/.emacs_temp/backups"))))
+(setq auto-save-file-name-transforms `(("\\(?:[^/]*/\\)*\\(.*\\)"
+,"~/.emacs_temp/autosaves" t)))
+#+end_src
+
+* Packages
+** Configure package archives to pull from
+
+#+begin_src emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
+(package-initialize)
+#+end_src
+
+** Configure =use-package=
+
+I use =use-package= to install and configure my packages. My =init.el= includes the
+initial setup for =package.el= and ensures that =use-package= is installed, since I
+wanna do that right away.
+
+This makes sure that =use-package= will install the package if it's not already
+available. It also means that I should be able to open Emacs for the first time
+on a fresh Debian box and have my whole environment automatically installed. I'm
+not /totally/ sure about that, but we're gettin' close.
+
+#+begin_src emacs-lisp
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+#+end_src
+
+Defer loading packages unless explicitly demanded
+
+#+begin_src emacs-lisp
+(setq use-package-always-defer t)
+#+end_src
+
+Always compile packages, and use the newest version available.
+
+#+begin_src emacs-lisp
+(use-package auto-compile
+  :demand t
+  :config (auto-compile-on-load-mode))
+  (setq load-prefer-newer t)
+#+end_src
+
+** Environment Setup
+
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :ensure t)
+  (when (daemonp)
+    (exec-path-from-shell-initialize))
+#+end_src
+
+** Modus Themes
+
+#+begin_src emacs-lisp
+  (use-package modus-themes
+    :ensure t
+    :demand
+    :init
+    (require 'modus-themes)
+    (setq modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted))
+    (setq modus-themes-common-palette-overrides
+    '((bg-region bg-lavender)
+      (fg-region unspecified)
+      (bg-mode-line-active bg-blue-intense)
+      (fg-mode-line-active fg-main)
+      (border-mode-line-active blue-intense)))
+
+    ;; Add all customizations prior to loading the theme
+    ;;
+    ;; NOTE: Explictly pass a value to the second arg for NO-CONFIRM so that
+    ;; emacs loads the theme w/o prompting.
+    (load-theme 'modus-vivendi-tinted t))
+#+end_src
+
+** Magit
+
+[[https://magit.vc][Magit]] is a text based UI for git.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :ensure t
+  :bind ("C-c m" . magit-status))
+#+end_src
+
+** Multiple Cursurs
+
+This mode provides the ability to edit multiple lines within a buffer
+at the same time.
+
+#+begin_src emacs-lisp
+(use-package multiple-cursors
+  :ensure t)
+#+end_src
+
+** Flycheck
+
+Syntax checking
+
+#+begin_src emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+end_src
+
+** Go
+
+#+begin_src emacs-lisp
+(use-package go-mode
+  :ensure t)
+#+end_src
+
+Fill structs
+
+Assumes `go install github.com/davidrjenni/reftools/cmd/fillstruct@latest` has
+been run.
+
+#+begin_src emacs-lisp
+  (use-package go-fill-struct
+    :ensure t
+    :bind (:map go-mode-map
+		("C-c f s" . go-fill-struct)))
+#+end_src
+
+** Yasnippet
+
+Helpful autocomplete via shorthand. For example `err` will expand to
+default error handling block in Go. Yasnippet proper no longer
+maintains snippets for various languages, which is why we also include
+=yassnippet-snippets= which is the official collection of snippets for yasnippet.
+
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t)
+
+  (use-package yasnippet-snippets
+    :ensure t
+    :init (yas-global-mode))
+#+end_src
+
+** LSP/Code
+
+[[https://emacs-lsp.github.io/lsp-mode/][LSP Mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like company, flycheck and projectile.
+
+#+begin_src emacs-lisp
+    (use-package lsp-mode
+      :ensure t
+      :config
+    (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+    (setq lsp-completion-provider :none)
+    (setq lsp-file-watch-threshold 2000))
+
+    (use-package lsp-ui
+      :ensure t)
+#+end_src
+
+*** Go
+Assumes [[https://github.com/go-delve/delve/tree/master/Documentation/installation][delve debugger]] has been installed for Go.
+#+begin_src emacs-lisp
+  (use-package dap-mode
+    :ensure t) ;; package contains the sub mode
+  (require 'dap-dlv-go)
+#+end_src
+
+Enable Go for LSP.
+#+begin_src emacs-lisp
+  (add-hook 'go-mode-hook #'lsp)
+#+end_src
+
+Set tab-width to 4.
+
+#+begin_src emacs-lisp
+  (add-hook 'go-mode-hook (lambda ()
+      (setq tab-width 4)))
+#+end_src
+
+Set gofmt to goimports and set hook to run on file save.
+
+#+begin_src emacs-lisp
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+#+end_src
+
+*** Ruby
+
+Outside of the config we need to install the language server we want
+to use, which is [[https://github.com/Shopify/ruby-lsp][Ruby LSP]]. Easier to install it to the system ruby
+gems, instead of through a project Gemfile as this avoids needing to
+use bundler to find the executable.
+
+*** Protobuf
+
+#+begin_src emacs-lisp
+  (use-package protobuf-mode
+    :ensure t)
+#+end_src
+
+*** Docker
+
+#+begin_src emacs-lisp
+  (use-package dockerfile-mode
+    :ensure t)
+#+end_src
+
+** Copilot
+
+[[https://github.com/zerolfx/copilot.el.git][copilot.el]] is not on a package manager and I don't want to figure out
+how to use straight.el. Going with the manual install route for now.
+
+This [[https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/][blog]] has some suggestions on restricting copilot in certain
+modes, but for now I'm just going to enable it globally and will
+disable copilot in specific modes if it becomes a problem.
+
+Clone the repository via `git clone
+https://github.com/zerolfx/copilot.el.git`
+
+Install dependencies
+#+begin_src emacs-lisp
+  (use-package dash
+    :ensure t)
+  (use-package s
+    :ensure t)
+  (use-package editorconfig
+    :ensure t)
+#+end_src
+
+Load the library
+#+begin_src emacs-lisp
+  (load-file "/Users/kyle/Developer/copilot.el/copilot.el")
+  (require 'copilot)
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+#+end_src
+
+** Git Link
+
+Open Github from a point in a local git file
+
+#+begin_src emacs-lisp
+  (use-package git-link
+    :ensure t
+    :bind (("C-c g l" . git-link)))
+#+end_src
+
+** Projectile
+
+Project navigation and management library.
+
+#+begin_src emacs-lisp
+  (use-package projectile
+    :ensure t
+    :init
+    (projectile-mode)
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+#+end_src
+
+** Marginalia
+
+Annotations in mini-buffer completion view.
+
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :ensure t
+    :custom
+    (marginalia-align 'right)
+    :init
+    (marginalia-mode))
+#+end_src
+
+** Vertico
+
+Minibuffer completions in vertical format.
+
+#+begin_src emacs-lisp
+  (use-package vertico
+    :ensure t
+    :init (vertico-mode))
+#+end_src
+
+
+Configure directory extension. These settings make vertico interaction
+align with my previous workflow that used ido-mode.
+
+- vertico-directory-enter will populate that document selection
+  (similar to the default TAB functionality) w/o actually opening the directory
+- vertico-directory-delete-word will remove the leaf directory node up
+  to the /
+
+#+begin_src emacs-lisp
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("<backspace>" . vertico-directory-delete-word)))
+#+end_src
+
+** Orderless
+
+Completion styles.
+
+#+begin_src emacs-lisp
+  (use-package orderless
+    :ensure t
+    :init (setq completion-styles '(orderless flex)))
+#+end_src
+
+** Corfu
+
+Enhanced completion at point.
+
+#+begin_src emacs-lisp
+(use-package corfu
+  :custom
+  (corfu-auto t)          ;; Enable auto completion
+  ;; (corfu-separator ?_) ;; Set to orderless separator, if not using space
+  (corfu-auto-prefix 2)
+  :bind
+  ;; Another key binding can be used, such as S-SPC.
+  ;; (:map corfu-map ("M-SPC" . corfu-insert-separator))
+  :init (global-corfu-mode))
+#+end_src
+
+** Org
+
+Custom hook code to be called by org mode.
+
+#+begin_src emacs-lisp
+(defun kb/org-mode-setup ()
+  (auto-fill-mode)
+  (visual-line-mode))
+#+end_src
+
+Install org mode and call our hook above. Additionally change the
+default rollup symbols of "..." to a carrot to make things a be cleaner.
+
+#+begin_src emacs-lisp
+(use-package org
+  :ensure t
+  :config
+  (setq org-ellipsis " ▾")
+  :hook (org-mode . kb/org-mode-setup))
+#+end_src
+
+Show org-mode bullets as UTF-8 characters.
+
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :ensure t
+  :after org
+  :hook (org-mode . org-bullets-mode))
+#+end_src
+
+Replace list hyphen with dot in org-mode
+
+#+begin_src emacs-lisp
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 ()(compose-region(match-beginning 1) (match-end 1) "•"))))))
+#+end_src
+
+Custom hook code to be called by visual fill column.
+
+#+begin_src emacs-lisp
+(defun kb/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+#+end_src
+
+Install =visual-fill-column= and call our hook above. This package
+allows us to specific when to wrap lines instead of the emacs default
+of wrapping at the window edge.
+
+#+begin_src emacs-lisp
+(use-package visual-fill-column
+  :ensure t
+  :hook (org-mode . kb/org-mode-visual-fill))
+#+end_src
+
+* Keybindings
+
+** Resize Windows
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c <left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-c <down>") 'shrink-window)
+(global-set-key (kbd "C-c <up>") 'enlarge-window)
+#+end_src
+
+** Comment Region
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c / ") 'comment-or-uncomment-region)
+#+end_src
+
+** Recursive Grep
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c r g") 'rgrep)
+#+end_src
+
+** Org finder
+
+Open a file within the folder org files are kept in.
+
+#+begin_src emacs-lisp
+  (defun my-org-finder ()
+    (interactive)
+    (ido-find-file-in-dir "~/Documents/org/"))
+  (global-set-key (kbd "C-c o") 'my-org-finder)
+#+end_src
+
+* Preferences
+** Emacs Chrome
+
+Disable the tool bar that lives in the chrome title bar area
+
+#+begin_src emacs-lisp
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+#+end_src
+
+** Yes/No
+
+Shorten confirmation prompt to be y/n keys.
+
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+** Buffers
+
+Disable scroll bars on buffers
+
+#+begin_src emacs-lisp
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+end_src
+
+Shift + arrow key to jump between visible buffers.
+
+#+begin_src emacs-lisp
+  (windmove-default-keybindings)
+#+end_src
+
+Set iBuffer as the default.
+
+#+begin_src emacs-lisp
+  (defalias 'list-buffers 'ibuffer)
+#+end_src
+
+Show dot-files in nav
+
+#+begin_src emacs-lisp
+  (setq nav-hidden t)
+#+end_src
+
+Trim trailing whitespace when writing a file.
+
+#+begin_src emacs-lisp
+  (add-hook 'write-file-functions 'delete-trailing-whitespace)
+#+end_src
+
+Always show column number in mode line
+
+#+begin_src emacs-lisp
+  (column-number-mode 1)
+#+end_src
+
+Enable save place mode, which will put the cursor at the
+last location of cursor in file
+
+#+begin_src emacs-lisp
+  (save-place-mode 1)
+#+end_src
+
+Revert buffers when the underlying file has changed
+
+#+begin_src emacs-lisp
+  (global-auto-revert-mode 1)
+#+end_src
+
+Enable recentf mode to recall recently opened files
+
+#+begin_src emacs-lisp
+  ;; TODO set a keybinding for recentf-open-file
+  (recentf-mode 1)
+#+end_src
+
+** Fonts
+
+#+begin_src emacs-lisp
+  ;; Set reusable font name variables
+  (defvar kb/fixed-width-font "JetBrains Mono"
+    "The font to use for monospaced (fixed width) text.")
+
+  (defvar kb/variable-width-font "Iosevka Aile"
+    "The font to use for variable-pitch (document) text.")
+
+  ;; NOTE: These settings might not be ideal for your machine, tweak them as needed!
+   (set-face-attribute 'default nil :font kb/fixed-width-font :weight 'light :height 150)
+   (set-face-attribute 'fixed-pitch nil :font kb/fixed-width-font :weight 'light :height 160)
+   (set-face-attribute 'variable-pitch nil :font kb/variable-width-font :weight 'light :height 1.3)
+#+end_src
